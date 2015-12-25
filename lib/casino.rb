@@ -47,6 +47,9 @@ module CASino
       timeout: 180,
       lifetime_inactive: 300,
       drift: 30
+    },
+    ticket_validation_response_builder: {
+      cas_user_field: :username
     }
   }
 

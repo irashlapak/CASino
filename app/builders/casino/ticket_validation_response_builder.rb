@@ -52,7 +52,7 @@ class CASino::TicketValidationResponseBuilder
   def build_success_xml(service_response, ticket, service_ticket, ticket_granting_ticket, proxies)
     user = ticket_granting_ticket.user
     service_response.cas :authenticationSuccess do |authentication_success|
-      authentication_success.cas :user, user.username
+      authentication_success.cas :user, user.send(CASino.config.ticket_validation_response_builder[:cas_user_field])
       unless user.extra_attributes.blank?
         authentication_success.cas :attributes do |attributes|
           attributes.cas :authenticationDate, ticket_granting_ticket.created_at.iso8601
